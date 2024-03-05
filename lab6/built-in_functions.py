@@ -28,4 +28,3 @@ def square_root(number, milliseconds):
     else:
         print(f'Square root of {number} after {milliseconds} millisecond is {result}')
     
-square_root(4, 12000)
