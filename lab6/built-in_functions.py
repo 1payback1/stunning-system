@@ -27,4 +27,3 @@ def square_root(number, milliseconds):
         print(f'Square root of {number} after {milliseconds} milliseconds is {result}')
     else:
         print(f'Square root of {number} after {milliseconds} millisecond is {result}')
-    
