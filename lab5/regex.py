@@ -1,7 +1,7 @@
 import re
 
 with open('row.txt', 'r', encoding = 'utf-8') as file:
-    data = file.read().replace('\n', ' ')
+    data = file.readline()
 
 #1
 pattern1 = r'ab*'
@@ -9,7 +9,13 @@ x1 = re.search(pattern1, data)
 
 #2
 pattern2 = r'abb|abbb'
-x2 = re.search(pattern2, data)
+for line in data:
+    x2 = re.search(pattern2, line)
+    if x2:
+        break
+        print(1)
+if x2 == False:
+    print(0)
 
 #3
 pattern3 = r'\b[a-z]+_[a-z]+\b'
