@@ -1,50 +1,99 @@
 import re
 
-with open('row.txt', 'r', encoding = 'utf-8') as file:
-    data = file.readline()
+with open('/Users/alibekzholdasbekov/Desktop/pp2/labs/lab5/row.txt', 'r') as file:
+    data = file.readlines()
+
 
 #1
-pattern1 = r'ab*'
-x1 = re.search(pattern1, data)
+def f1():
+    pattern1 = r'ab*'
+    flag = 0
+    for line in data:
+        match = re.search(pattern1, line)
+        if match:
+            flag = 1
+            break
+    if flag == 1:
+        print(match.group())
+    else:
+        print(0)
 
 #2
-pattern2 = r'abb|abbb'
-for line in data:
-    x2 = re.search(pattern2, line)
-    if x2:
-        break
-        print(1)
-if x2 == False:
-    print(0)
+def f2():
+    pattern2 = r'abb|abbb'
+    flag = 0
+    for line in data:
+        match = re.search(pattern2, line)
+        if match:
+            flag = 1
+            break
+    if flag == 1:
+        print(match.group())
+    else:
+        print(0)
 
 #3
-pattern3 = r'\b[a-z]+_[a-z]+\b'
-x3 = re.findall(pattern3, data)
+def f3():
+    pattern3 = r'\b[a-z_]+_[a-z]+\b'
+    matches = []
+    for line in data:
+        matches += re.findall(pattern3, line)
+    print(matches)
 
 #4
-pattern4 = r'\b[A-Z][a-z]*\b'
-x4 = re.findall(pattern4, data)
+def f4():
+    pattern4 = r'\b[A-Z][a-z]*\b'
+    matches = []
+    for line in data:
+        matches += re.findall(pattern4, line)
+    print(matches)
 
 #5
-pattern5 = r'\ba.*b\b'
-x5 = re.search(pattern5, data)
+def f5():
+    pattern5 = r'a.*b$'
+    flag = 0
+    for line in data:
+        match = re.search(pattern5, line)
+        if match:
+            flag = 1
+            break
+    if flag == 1:
+        print(match.group())
+    else:
+        print(0)
 
 #6
-pattern6 = r'[ ,.]'
-x6 = re.sub(pattern6, ':', data)
+def f6():
+    pattern6 = r'[ ,.]'
+    for line in data:
+        result = re.sub(pattern6, ':', line)
+        print(result)
 
 #7
-pattern7 = r'([a-z])_([a-z])'
-x7 = re.sub(pattern7, lambda a : a.group(1) +  a.group(2).upper(), data)
+def f7():
+    pattern7 = r'_([a-z])'
+    for line in data:
+        result = ' '.join(re.sub(pattern7, lambda match : match.group(1).upper(), word) for word in line.split())
+        print(result)
 
 #8
-pattern8 = r'[A-Z]'
-x8 = re.split(pattern8, data)
+def f8():
+    pattern8 = r'[A-Z]'
+    for line in data:
+        parts = re.split(pattern8, line)
+        result = ' '.join(parts)
+        print(result)
 
 #9
-pattern9 = r'([a-z])([A-Z])'
-x9 = re.sub(pattern9, lambda a : a.group(1) + ' ' + a.group(2), data)
+def f9():
+    pattern9 = r'([a-z])([A-Z])'
+    for line in data:
+        result = re.sub(pattern9, r'\1 \2', line)
+        print(result)
 
 #10
-pattern10 = r'([a-z])([A-Z])'
-x10 = re.sub(pattern10, lambda a : a.group(1) + '_' + a.group(2).lower(), data)
+def f10():
+    pattern10 = r'([a-z0-9])([A-Z])'
+    for line in data:
+        result = re.sub(pattern10, r'\1_\2', line).lower()
+        print(result)
